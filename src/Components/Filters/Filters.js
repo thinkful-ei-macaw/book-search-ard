@@ -2,21 +2,17 @@ import React, { Component } from 'react'
 import './Filters.css'
 
 export class Filters extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'coconut'}
+  state = {
+    value: 'partial'
   }
-
+  
   handleChange = (e) => {
     this.setState({value: e.target.value})
   }
 
   handleFilterSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    
-    const { value } = e.target
-    this.props.handleFilter(value);
+    e.preventDefault();    
+    this.props.handleFilter(this.state.value);
   }
 
   render() {
@@ -25,7 +21,7 @@ export class Filters extends Component {
       <div>
         <form 
           className="filterForm"
-          onChange={this.handleFilterSubmit}>
+          onSubmit={this.handleFilterSubmit}>
           <label htmlFor="filterTypes">Filters</label>
           <br />
           <select 
@@ -33,7 +29,9 @@ export class Filters extends Component {
             value={this.state.value}
             onChange={this.handleChange}
           >
-            <option value="partial">Partial Text Available</option>
+            <option value="partial">
+              Partial Text Available
+            </option>
             <option value="full">
               Full Text Available
             </option>

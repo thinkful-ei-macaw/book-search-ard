@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSearch: '',
       formEntry: '',
       books: [],
       error: null, 
@@ -43,14 +44,40 @@ class App extends Component {
         }
       })
       this.setState({
-        books
+        books,
+        currentSearch: name
       })
     })
   }
 
   handleFilter = (filter) => {
     console.log(filter)
-    // fetch(`https://www.googleapis.com/books/v1/volumes?q=${name}&filter=free-ebooks&key=${this.state.apiKey}`)
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.state.currentSearch}&filter=${filter}&key=${this.state.apiKey}`)
+    .then(res => {
+      if (!res.ok) {
+        // get the error message from the response
+        return res.json().then(error => {
+          throw error
+        })
+      }
+      return res.json()
+    })
+    .then(data => {
+      let books = data.items.map(book => {
+        // return an edited object for each book item
+        return {
+          id: book.id,
+          title: book.volumeInfo.title,
+          subtitle: book.volumeInfo.subtitle,
+          authors: book.volumeInfo.authors,
+          description: book.volumeInfo.description,
+          image: book.volumeInfo.imageLinks.smallThumbnail
+        }
+      })
+      this.setState({
+        books
+      })
+    })
   }
 
   render() {

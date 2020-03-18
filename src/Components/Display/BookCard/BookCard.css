@@ -1,0 +1,38 @@
+.bookCardContainer {
+  margin: 1rem;
+  padding: 1rem;
+  border: rgb(225, 180, 108) solid 1px;
+  display: flex;
+}
+
+.imageContainer {
+  flex-grow: 1;
+}
+
+.textContainer {
+  flex-grow: 2;
+}
+
+img {
+  margin: 2rem;
+}
+
+.bookTitle {
+  font-size: 2rem;
+}
+
+.bookSubtitle {
+  font-family: cursive;
+}
+
+.author {
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.description {
+  line-height: 1.5rem;
+  padding: 1rem;
+}
+
+

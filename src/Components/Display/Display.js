@@ -13,7 +13,7 @@ export class Display extends Component {
           book={book} />
       )
     })
-    console.log(allBooks);
+    // console.log(allBooks);
     
     return (
       <section>

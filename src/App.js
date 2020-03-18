@@ -10,8 +10,6 @@ class App extends Component {
     this.state = {
       formEntry: '',
       books: [],
-      printType: 'None',
-      bookType: 'None',
       error: null, 
       apiKey: 'AIzaSyAyAXbpeF38tbk6iI01sm2i-FwAaxkltAI'
     }
@@ -50,13 +48,13 @@ class App extends Component {
     })
   }
 
-  handleFilter = (name) => {
-    console.log(name);
-    // needs to set state
+  handleFilter = (filter) => {
+    console.log(filter)
+    // fetch(`https://www.googleapis.com/books/v1/volumes?q=${name}&filter=free-ebooks&key=${this.state.apiKey}`)
   }
 
   render() {
-    const { books, printType, bookType} = this.state
+    const { books } = this.state
     return (
       <main className='App'>
         <h1 className="appName">Google Book Search</h1>
